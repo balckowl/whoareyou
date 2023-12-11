@@ -31,7 +31,13 @@ const Quiz = (props) => {
           );
         })}
       </div>
-      <button>投票</button>
+      <button
+        onClick={() => {
+          props.setChoice(selectedId);
+        }}
+      >
+        投票
+      </button>
     </div>
   );
 };
