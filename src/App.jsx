@@ -7,7 +7,7 @@ import "./App.css";
 
 const App = () => {
   const [page,setPage] = useState(0);
-  const [name,setName] = useState("KOJI");
+  const [name,setName] = useState("");
   return (
     <div>
       {(()=>{
