@@ -4,7 +4,7 @@ const Quiz = (props) => {
   const who = {}; // 問題の人の名前(偽名)とアイコンが保存
   const members = []; //メンバーの名前(本名)(members[i].real)とアイコンとID (members[i].id)のリスト
 
-  const [selectedId, setSelectedId] = useState(members[0].id);
+  const [selectedId, setSelectedId] = useState(members[0].id);//membersにデータ入ってないのでエラーを吐きます
   const funcOnChange = (event) => {
     setSelectedId(event.target.value);
   };
