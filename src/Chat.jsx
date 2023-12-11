@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Chat = props => {
+const Chat = (props) => {
   const theme = "";
 
   const [time, setTime] = useState(120); //制限時間
@@ -16,8 +16,13 @@ const Chat = props => {
         残り時間:{Math.floor(time / 60)}分{time % 60}秒
       </p>
       <ul id="messages">
-        {messages.map((message, index) => {  //メッセージを展開
-          return <li key={index}>{message.pseudo}:{message.text}</li>;
+        {messages.map((message, index) => {
+          //メッセージを展開
+          return (
+            <li key={index}>
+              {message.pseudo}:{message.text}
+            </li>
+          );
         })}
       </ul>
       <textarea
