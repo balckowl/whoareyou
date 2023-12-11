@@ -4,7 +4,7 @@ const Chat = props => {
   const theme = "";
 
   const [time, setTime] = useState(120); //制限時間
-  const [messages, setMessages] = useState([]); //message一つ一つは{text:"~~~",name:"~~~"}
+  const [messages, setMessages] = useState([]); //message一つ一つは{text:"~~~",pseudo:"~~~"}
   const [text, setText] = useState(""); //textareaの値、取得用
 
   //サーバーからメッセージが送られてきたらsetMessagesを用いてmessagesを変更する
@@ -17,7 +17,7 @@ const Chat = props => {
       </p>
       <ul id="messages">
         {messages.map((message, index) => {  //メッセージを展開
-          return <li key={index}>{message.name}:{message.text}</li>;
+          return <li key={index}>{message.pseudo}:{message.text}</li>;
         })}
       </ul>
       <textarea
