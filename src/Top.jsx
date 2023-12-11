@@ -5,7 +5,8 @@ const Top = (props) => {
   const [pseudo, setPseudo] = useState(""); //偽名
   const [real, setReal] = useState(""); //本名
 
-  // スタート時すべてのユーザーが自身のApp.jsxのselfに値をセットする(props.setSelf)
+  // スタート時すべてのユーザーが自身のApp.jsxのselfに自身のデータをセットする(props.setSelf)
+  // 後でチャットするときに自分のデータが必要になるため(idや名前、アイコンなど)
 
   return (
     <div>
