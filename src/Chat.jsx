@@ -1,10 +1,11 @@
 import { useState } from "react";
 
 const Chat = props => {
+  const theme = "";
+
   const [time, setTime] = useState(120); //制限時間
   const [messages, setMessages] = useState([]); //message一つ一つは{text:"~~~",name:"~~~"}
   const [text, setText] = useState(""); //textareaの値、取得用
-  const theme = ""; //お題
 
   //サーバーからメッセージが送られてきたらsetMessagesを用いてmessagesを変更する
 
@@ -26,13 +27,7 @@ const Chat = props => {
           setText(event.target.value);
         }}
       />
-      <button
-        onClick={() => {
-            //クリックしたらサーバーにメッセージを送る
-        }}
-      >
-        SUBMIT
-      </button>
+      <button>SUBMIT</button>{/*クリックしたらサーバーにメッセージを送る*/}
     </div>
   );
 };
