@@ -1,7 +1,10 @@
 import { useState } from "react";
 
-const Top = () => {
+const Top = props => {
   const [Rooms,setRooms] = useState([]);
+  
+  // スタートしたらApp.jsxのnameに値をセットする(props.setName)
+
   return (
     <div>
       <button>create</button>
