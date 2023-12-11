@@ -27,7 +27,10 @@ const Chat = props => {
           setText(event.target.value);
         }}
       />
-      <button>SUBMIT</button>{/*クリックしたらサーバーにメッセージを送る*/}
+      <button>SUBMIT</button>
+      {/*クリックしたらサーバーにメッセージを送る
+         自身のIDや名前、アイコンなどはprops.selfに入ってます(ID:props.self.id,偽名:props.self.id,アイコン:props.self.image)。
+      */}
     </div>
   );
 };

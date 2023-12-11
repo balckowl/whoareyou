@@ -5,7 +5,7 @@ const Top = (props) => {
   const [pseudo, setPseudo] = useState(""); //偽名
   const [real, setReal] = useState(""); //本名
 
-  // スタート時App.jsxのnameに値をセットする(props.setName)
+  // スタート時すべてのユーザーが自身のApp.jsxのselfに値をセットする(props.setSelf)
 
   return (
     <div>
@@ -40,7 +40,7 @@ const ARoom = (props) => {
     <div>
       <h1>{props.name}</h1> {/* 部屋の名前 */}
       <p>{props.num}/5</p> {/* 部屋にいる人数 */}
-      <ul>
+      <ul> {/**部屋にいる人たち */}
         {props.members.map((member, index) => {
           return <li key={index}>{member}</li>;
         })}

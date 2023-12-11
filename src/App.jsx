@@ -8,18 +8,18 @@ import "./App.css";
 
 const App = () => {
   const [page,setPage] = useState(0);
-  const [name,setName] = useState("");
+  const [self,setSelf] = useState({});
   const [choice,setChoice] = useState("");
   return (
     <div>
       {(()=>{
         switch (page) {
           case 0:
-            return <Top setName={(nm)=>{setName(nm);}}/>
+            return <Top setSelf={setSelf}/>
           case 1:
-            return <Chat name={name}/>
+            return <Chat self={self}/>
           case 2:
-            return <Quiz name={name} setChoice={setChoice}/>
+            return <Quiz self={self} setChoice={setChoice}/>
           case 3:
             return <Answer Back={()=>{setPage(0);}} choice={choice} />
           default:
