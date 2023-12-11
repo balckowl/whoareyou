@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const Quiz = (props) => {
   const who = {}; // 問題の人の名前(偽名)とアイコンが保存
-  const members = []; //メンバーの名前(本名)(members[i].real)とアイコンとID(members[i].id)のリスト
+  const members = []; //メンバーの名前(本名)(members[i].real)とアイコンとID (members[i].id)のリスト
 
   const [selectedId, setSelectedId] = useState(members[0].id);
   const funcOnChange = (event) => {
@@ -32,9 +32,11 @@ const Quiz = (props) => {
       </div>
       <button
         onClick={() => {
-          props.setChoice(selectedId);
+          props.setChoice(selectedId); //後で答えのページで答えと照会するためにAppのchoiceに保存しておく
 
           //以降回答の送信の処理
+
+          props.ToAnswer(); //答えのページに遷移
         }}
       >
         投票
