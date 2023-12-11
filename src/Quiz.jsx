@@ -6,7 +6,6 @@ const Quiz = (props) => {
 
   const [selectedId, setSelectedId] = useState(members[0].id);
   const funcOnChange = (event) => {
-    console.log(event.target.value);
     setSelectedId(event.target.value);
   };
   return (
@@ -34,6 +33,8 @@ const Quiz = (props) => {
       <button
         onClick={() => {
           props.setChoice(selectedId);
+
+          //以降回答の送信の処理
         }}
       >
         投票
