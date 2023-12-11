@@ -17,7 +17,7 @@ const App = () => {
           case 0:
             return <Top setSelf={setSelf}/>
           case 1:
-            return <Chat self={self}/>
+            return <Chat self={self} ToQuiz={()=>{setPage(2)}} />
           case 2:
             return <Quiz self={self} setChoice={setChoice}/>
           case 3:
