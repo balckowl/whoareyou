@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const Quiz = (props) => {
   const who = {}; // 問題の人の名前(偽名)とアイコンが保存
-  const members = []; //メンバーの名前(本名)とアイコンとIDのリスト
+  const members = []; //メンバーの名前(本名)(members[i].real)とアイコンとID(members[i].id)のリスト
 
   const [selectedId, setSelectedId] = useState(members[0].id);
   const funcOnChange = (event) => {
@@ -25,7 +25,7 @@ const Quiz = (props) => {
                 id={"quiz" + String(index)}
                 value={member.id}
               />
-              <label htmlFor={"quiz" + String(index)}>{member.name}</label>
+              <label htmlFor={"quiz" + String(index)}>{member.real}</label>
             </div>
           );
         })}
