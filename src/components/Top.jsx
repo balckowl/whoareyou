@@ -10,6 +10,7 @@ const Top = (props) => {
   // スタート時すべてのユーザーが自身のApp.jsxのselfに自身のデータをセットする(props.setSelf)
   // 後でチャットするときに自分のデータが必要になるため(idや名前、アイコンなど)
 
+
   return (
     <div>
       <span>偽名:</span>
