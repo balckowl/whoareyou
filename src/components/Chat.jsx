@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 const Chat = (props) => {
   const theme = "";
@@ -8,6 +8,16 @@ const Chat = (props) => {
   const [text, setText] = useState(""); //textareaの値、取得用
 
   //サーバーからメッセージが送られてきたらsetMessagesを用いてmessagesを変更する
+  useEffect(() => {
+    const id = setInterval(() => {
+      if(time === 0){
+        clearInterval(id);
+        props.ToQuiz();
+      }
+      setTime(time - 1);
+    },1000);
+    return () => clearInterval(id);
+  });
 
   return (
     <div>
