@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import Top from "./Top.jsx";
-import Chat from "./Chat.jsx";
-import Quiz from "./Quiz.jsx";
-import Answer from "./Answer.jsx";
+import Top from "./components/Top.jsx";
+import Chat from "./components/Chat.jsx";
+import Quiz from "./components/Quiz.jsx";
+import Answer from "./components/Answer.jsx";
 import "./App.css";
 
 const App = () => {
