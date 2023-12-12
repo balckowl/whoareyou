@@ -4,6 +4,7 @@ const Top = (props) => {
   const [Rooms, setRooms] = useState([]);
   const [pseudo, setPseudo] = useState(""); //偽名
   const [real, setReal] = useState(""); //本名
+  const [open, setOpen] = useState(false);
 
   // スタート時すべてのユーザーが自身のApp.jsxのselfに自身のデータをセットする(props.setSelf)
   // 後でチャットするときに自分のデータが必要になるため(idや名前、アイコンなど)
@@ -18,6 +19,7 @@ const Top = (props) => {
         onChange={(e) => {
           setPseudo(e.target.value);
         }}
+        disabled={open}
       />
       <span>本名:</span>
       <input
@@ -28,7 +30,20 @@ const Top = (props) => {
           setReal(e.target.value);
         }}
       />
-      <button>create</button>
+      <button onClick={()=>{
+        setOpen(true);
+      }}>create</button> {/**部屋の作成 */}
+      <div id="create_form">
+        <span>部屋名:</span>
+        <input
+          type="text"
+          id="roomName"
+          value={pseudo}
+          onChange={(e) => {
+            setPseudo(e.target.value);
+          }}
+        />
+      </div>
       {Rooms.map((room, index) => {
         return <ARoom key={index} {...room} />;
       })}
