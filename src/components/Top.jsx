@@ -1,8 +1,14 @@
+import { Link } from "react-router-dom";
+
 const Top = (props) => {
   return (
     <div>
-        <button onClick={props.ToRoomMake}>部屋を作る</button>
-        <button onClick={props.ToRoomJoin}>部屋を探す</button>
+      <button>
+        <Link to="/roommake">部屋を作る</Link >
+      </button>
+      <button>
+        <Link to="/roomjoin">部屋を探す</Link>
+      </button>
     </div>
   );
 };
