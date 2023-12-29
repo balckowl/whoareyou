@@ -1,47 +1,72 @@
-import { useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { db } from "../../api/firebase";
+import { useParams } from "react-router-dom"
 
 const Quiz = (props) => {
-  const who = {}; // 問題の人の名前(偽名)とアイコンが保存
-  const members = []; //メンバーの名前(本名)(members[i].real)とアイコンとID (members[i].id)のリスト
 
-  const [selectedId, setSelectedId] = useState(members[0].id);//membersにデータ入ってないのでエラーを吐きます
-  const funcOnChange = (event) => {
-    setSelectedId(event.target.value);
-  };
+  const [who, setWho] = useState({}); // 問題の人の名前(偽名)とアイコンが保存
+  const [members, setMembers] = useState([]); //メンバーの名前(本名)(members[i].real)とアイコンとID (members[i].id)のリスト
+  const { id } = useParams();
+  const rname = id
+
+  // const [selectedId, setSelectedId] = useState(members[0].id);//membersにデータ入ってないのでエラーを吐きます
+  // const funcOnChange = (event) => {
+  //   setSelectedId(event.target.value);
+  // };
+
+  const getRoomMembers = async () => {
+    const docRef = doc(db, "Room", rname);
+    const docSnap = await getDoc(docRef);
+
+    setMembers(docSnap.data().name)
+
+    //memberの中からランダムに問題を出題
+    //自分自身を除く処理、お願いします。
+    const randomIndex = Math.floor(Math.random() * members.length);
+
+    setWho(docSnap.data().name[randomIndex])
+  }
+
+  //正解かを判定する関数
+  const handleJudge = (e) => {
+    if(e.target.textContent == who.real){
+
+      //コンポーネントを切り替える処理お願いします。
+      //後の処理はあんでもいいです。
+      alert('正解')
+    }else{
+      alert('不正解')
+    }
+  }
+
+  useEffect(() => {
+    getRoomMembers()
+  }, [])
+
   return (
     <div>
-      <h1>この人は誰？</h1>
-      <img src={who.image} alt={who.name} />
-      <p>{who.name}</p>
-      <div>
-        {members.map((member, index) => {
-          return (
-            <div key={index}>
-              <input
-                checked={member.id === selectedId}
-                onChange={funcOnChange}
-                type="radio"
-                name="quiz"
-                id={"quiz" + String(index)}
-                value={member.id}
-              />
-              <label htmlFor={"quiz" + String(index)}>{member.real}</label>
-            </div>
-          );
-        })}
-      </div>
-      <button
-        onClick={() => {
-          props.setChoice(selectedId); //後で答えのページで答えと照会するためにAppのchoiceに保存しておく
+      {
+        who ? (
+          <>
+            <h1>この人は誰？</h1>
+            <p>{who.pseudo}</p>
 
-          //以降回答の送信の処理
-
-          props.ToAnswer(); //答えのページに遷移
-        }}
-      >
-        投票
-      </button>
-    </div>
+            <h2>選択肢</h2>
+            <ul>
+              {members.map((member, index) => (
+                <li onClick={handleJudge} key={index}>{member.real}</li>
+              ))}
+            </ul>
+          </>
+        ) :
+          (
+            <>
+              <p>Loading...</p>
+            </>
+          )
+      }
+    </div >
   );
 };
 

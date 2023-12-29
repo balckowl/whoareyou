@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { arrayUnion, doc, setDoc } from "firebase/firestore";
 import { db } from "../../api/firebase";
+import { useNavigate } from "react-router-dom"
 
 const RoomMake = (props) => {
   const [pseudo, setPseudo] = useState(""); //偽名
   const [real, setReal] = useState(""); //本名
   const [open, setOpen] = useState(false);
   const [rname, setRname] = useState("");
+  const navigate = useNavigate()
 
   // スタート時すべてのユーザーが自身のApp.jsxのselfに自身のデータをセットする(props.setSelf)
   // 後でチャットするときに自分のデータが必要になるため(idや名前、アイコンなど)
@@ -22,6 +24,11 @@ const RoomMake = (props) => {
     await setDoc(doc(db, "Room", rname), {
       name: [{ real, pseudo }],
     });
+
+    //loginlessなゲームを実装するためにlocalstorageにuserを保存
+    localStorage.setItem("user", JSON.stringify({ pseudo: pseudo, real: real, isExistingRoom: rname }))
+
+    navigate('/roomjoin')
   };
 
   return (
