@@ -2,11 +2,14 @@ import { doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../api/firebase";
 import { useParams } from "react-router-dom"
+import Answer from "./Answer.jsx";
 
 const Quiz = (props) => {
 
   const [who, setWho] = useState({}); // 問題の人の名前(偽名)とアイコンが保存
   const [members, setMembers] = useState([]); //メンバーの名前(本名)(members[i].real)とアイコンとID (members[i].id)のリスト
+  const [page, setPage] = useState(0);
+  const [correct, setCorrect] = useState(1);
   const { id } = useParams();
   const rname = id
 
@@ -19,14 +22,20 @@ const Quiz = (props) => {
     const docRef = doc(db, "Room", rname);
     const docSnap = await getDoc(docRef);
 
-    setMembers(docSnap.data().name)
+    setMembers(docSnap.data().name.filter(n =>n.pseudo!==JSON.parse(localStorage.user).pseudo));
 
     //memberの中からランダムに問題を出題
     //自分自身を除く処理、お願いします。
+    // const randomIndex = Math.floor(Math.random() * members.length);
+
+    // setWho(members[randomIndex])
+  }
+
+  useEffect(()=>{
     const randomIndex = Math.floor(Math.random() * members.length);
 
-    setWho(docSnap.data().name[randomIndex])
-  }
+    setWho(members[randomIndex])
+  },[members])
 
   //正解かを判定する関数
   const handleJudge = (e) => {
@@ -34,9 +43,11 @@ const Quiz = (props) => {
 
       //コンポーネントを切り替える処理お願いします。
       //後の処理はあんでもいいです。
-      alert('正解')
+      setCorrect(true);
+      setPage(1);
     }else{
-      alert('不正解')
+      setCorrect(false);
+      setPage(1);    
     }
   }
 
@@ -46,7 +57,7 @@ const Quiz = (props) => {
 
   return (
     <div>
-      {
+      {page==0 ? <>{
         who ? (
           <>
             <h1>この人は誰？</h1>
@@ -65,7 +76,7 @@ const Quiz = (props) => {
               <p>Loading...</p>
             </>
           )
-      }
+      }</> : <Answer correct={correct} answer={who} />}
     </div >
   );
 };

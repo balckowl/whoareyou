@@ -5,7 +5,6 @@ import RoomMake from "./components/RoomMake.jsx";
 import RoomJoin from "./components/RoomJoin.jsx";
 import Chat from "./components/Chat.jsx";
 import Quiz from "./components/Quiz.jsx";
-import Answer from "./components/Answer.jsx";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
