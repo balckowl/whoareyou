@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { db } from "../../api/firebase";
 import { useNavigate } from "react-router-dom"
 
-const ARoom = ({ rname, num, members }) => {
+const ARoom = ({ rname, num, members, joined, setJoined }) => {
 
   const [pseudo, setPseudo] = useState(""); //偽名
   const [real, setReal] = useState(""); //本名
@@ -23,6 +23,8 @@ const ARoom = ({ rname, num, members }) => {
 
     //loginlessなゲームを実装するためにlocalstorageにuserを保存
     localStorage.setItem("user", JSON.stringify({ pseudo: pseudo, real: real, isExistingRoom: rname }))
+
+    setJoined(true)
   }
 
   //参加者の人数を監視して、5人になったらページをredirect
@@ -72,7 +74,7 @@ const ARoom = ({ rname, num, members }) => {
             setReal(e.target.value);
           }}
         />
-        <button disabled={Boolean(Number(localStorage.getItem("maker")))}>入室</button>
+        <button disabled={joined || Boolean(Number(localStorage.getItem("maker")))}>入室</button> {/**入出後か、ルーム作成者ならdisabled */}
       </form>
     </div>
   );
@@ -80,7 +82,7 @@ const ARoom = ({ rname, num, members }) => {
 
 const RoomJoin = (props) => {
   const [Rooms, setRooms] = useState([]); //ルーム一覧
-
+  const [joined, setJoined] = useState(false); //入室したかどうか
 
   useEffect(() => {
 
@@ -109,7 +111,7 @@ const RoomJoin = (props) => {
             return (
               <div key={index}>
                 {/* {room.name.length < 2 && */}
-                  <ARoom rname={room.id} num={room.name.length} members={room.name} index={index} />
+                  <ARoom joined={joined} setJoined={setJoined} rname={room.id} num={room.name.length} members={room.name} index={index} />
                  {/* } */}
               </div>
             )
