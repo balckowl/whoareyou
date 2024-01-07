@@ -72,7 +72,7 @@ const ARoom = ({ rname, num, members }) => {
             setReal(e.target.value);
           }}
         />
-        <button>入室</button>
+        <button disabled={Boolean(Number(localStorage.getItem("maker")))}>入室</button>
       </form>
     </div>
   );

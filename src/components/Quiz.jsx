@@ -39,6 +39,7 @@ const Quiz = (props) => {
 
   //正解かを判定する関数
   const handleJudge = (e) => {
+    localStorage.setItem("maker",0); //ルーム作成者用のフラグを元に戻す
     if(e.target.textContent == who.real){
 
       //コンポーネントを切り替える処理お願いします。

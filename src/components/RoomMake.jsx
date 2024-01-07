@@ -27,6 +27,7 @@ const RoomMake = (props) => {
 
     //loginlessなゲームを実装するためにlocalstorageにuserを保存
     localStorage.setItem("user", JSON.stringify({ pseudo: pseudo, real: real, isExistingRoom: rname }))
+    localStorage.setItem("maker",1); //ルーム作成者なら1,参加者なら0
 
     navigate('/roomjoin')
   };
