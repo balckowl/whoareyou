@@ -2,6 +2,7 @@ import { arrayUnion, collection, doc, onSnapshot, query, updateDoc } from "fireb
 import { useEffect, useState } from "react";
 import { db } from "../../api/firebase";
 import { useNavigate } from "react-router-dom"
+import "./styles/RoomJoin.css"
 
 const ARoom = ({ rname, num, members, joined, setJoined }) => {
 
@@ -48,33 +49,62 @@ const ARoom = ({ rname, num, members, joined, setJoined }) => {
 
 
   return (
-    <div>
-      <h1>{rname}</h1>  {/*部屋の名前*/}
+    <div className="ARoom">
+      <h1>ルーム名:{rname}</h1>  {/*部屋の名前*/}
       <p>{num}/5</p> {/* 部屋にいる人数*/}
       {/*部屋にいる人たち */}
-      <ul>
-        {members.map((member, index) => (
-          <li key={index}>{member.real}さん</li>
-        ))}
-      </ul>
-      <form onSubmit={(e) => addPerson(rname, e)}>
-        <span>偽名:</span>
-        <input
+      <table className="name-list">
+        <tbody>
+          {members.map((member, index) => (
+            <tr key={index}>
+              <td>{member.real}さん</td>
+            </tr>
+          ))}
+          {(() => {
+            let dst = [];
+            for (let i = 0; i < 5 - members.length; i++) {
+              dst.push(
+                <tr key={i}>
+                  <td>&emsp;</td>
+                </tr>
+              );
+            }
+            return dst;
+          })()}
+        </tbody>
+      </table>
+      <form onSubmit={(e) => addPerson(rname, e)} className="name-class join-name-class">
+        <div className="join-input gimei">
+          <span>偽名:</span>
+          <input
           type="text"
           value={pseudo}
           onChange={(e) => {
             setPseudo(e.target.value);
           }}
+          className="textbox"
+          placeholder="偽名入力"
         />
-        <span>本名:</span>
-        <input
+        </div>
+        <div className="join-input honmyou">
+          <span>本名:</span>
+          <input
           type="text"
           value={real}
           onChange={(e) => {
             setReal(e.target.value);
           }}
+          className="textbox"
+          placeholder="本名入力"
         />
-        <button disabled={joined || Boolean(Number(localStorage.getItem("maker")))}>入室</button> {/**入出後か、ルーム作成者ならdisabled */}
+        </div>
+        <button
+        className="join-input create-room join-room"
+          disabled={joined || Boolean(Number(localStorage.getItem("maker")))}
+        >
+          入室
+        </button>{" "}
+        {/**入出後か、ルーム作成者ならdisabled */}
       </form>
     </div>
   );
@@ -99,7 +129,7 @@ const RoomJoin = (props) => {
   }, [])
 
   return (
-    <div>
+    <div className="join-box">
       <h1>部屋一覧</h1>
       {/* <button onClick={()=>{
         //現在作られてる部屋の更新

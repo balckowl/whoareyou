@@ -34,7 +34,7 @@ const RoomMake = (props) => {
   };
 
   return (
-    <div className="input-name">
+    <div>
       <form
         onSubmit={(e) => {
           sendData(e);

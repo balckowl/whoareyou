@@ -1,0 +1,50 @@
+/* 3 Start */
+
+.name-list{
+    text-align: center;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    border-color: skyblue;
+    border-collapse: collapse;
+}
+
+.name-list td{
+    border: solid 2px skyblue;
+    padding: 10px 100px;
+}
+
+.start-game {
+    background-color: skyblue;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 15px;
+    color: whitesmoke;
+    border-color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+li{
+    list-style: none;
+}
+
+button.join-room{
+    margin-inline-start: 10px;
+}
+
+div.join-box{
+    margin-block: 20px 50px;
+}
+
+.ARoom{
+    margin-block: 50px;
+}
+
+.join-input{
+    display: inline-block;
+}
+
+.join-name-class{
+    padding: 0!important;
+}
