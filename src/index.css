@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+}
+
+/*共通部分*/
+.shadow {
+    box-shadow: 12px 9px 44px #000000;
+
+}
+
+/* header */
+
+header {
+    height: 90px;
+    background-color: skyblue;
+}
+
+header h1 {
+    text-align: center;
+    padding-block: 20px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* main */
+
+main {
+    height: 500px;
+}
+
+
+.index {
+    text-align: center;
+    height: 400px;
+    margin-block: 50px;
+}
+
+
+/* footer */
+.copyright {
+    background-color: skyblue;
+    padding-block: 15px;
+}
+
+.copyright p {
+    text-align: center;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* container */
+.container {
+    padding-inline: 15px;
+}
+
+@media(min-width: 1000px) {
+    .container {
+        width: 1000px;
+        margin-inline: auto;
+    }
+}
