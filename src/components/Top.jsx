@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import "./styles/Top.css";
 
 const Top = (props) => {
   return (
-    <div>
+    <div className="button-class">
       <button>
         <Link to="/roommake">部屋を作る</Link >
       </button>
