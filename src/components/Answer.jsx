@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Answer = (props) => {
   // const answer = {}; //答えの人のアイコン(answer.image)、偽名(answer.pseudo)、本名(answer.real)、ID(answer.id)が入ってる
@@ -12,7 +12,7 @@ const Answer = (props) => {
       <p>
         {props.answer.pseudo}さんの正体は{props.answer.real}さんでした
       </p>
-      {/* <button onClick={() => props.Back()}>戻る</button> */}
+      <button><Link to="/">戻る</Link></button>
     </div>
   );
 };
