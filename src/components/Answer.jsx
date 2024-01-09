@@ -12,7 +12,7 @@ const Answer = (props) => {
       <p>
         {props.answer.pseudo}さんの正体は{props.answer.real}さんでした
       </p>
-      <button><Link to="/">戻る</Link></button>
+      <Link to="/"><button>戻る</button></Link>
     </div>
   );
 };

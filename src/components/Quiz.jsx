@@ -4,7 +4,7 @@ import { db } from "../../api/firebase";
 import { useParams } from "react-router-dom"
 import Answer from "./Answer.jsx";
 
-const Quiz = (props) => {
+const Quiz = ({setJoined}) => {
 
   const [who, setWho] = useState({}); // 問題の人の名前(偽名)とアイコンが保存
   const [members, setMembers] = useState([]); //メンバーの名前(本名)(members[i].real)とアイコンとID (members[i].id)のリスト
@@ -40,6 +40,8 @@ const Quiz = (props) => {
   //正解かを判定する関数
   const handleJudge = (e) => {
     localStorage.setItem("maker",0); //ルーム作成者用のフラグを元に戻す
+    setJoined(false); //ルーム参加中かどうかのフラグを元に戻す
+
     if(e.target.textContent == who.real){
 
       //コンポーネントを切り替える処理お願いします。
