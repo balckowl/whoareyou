@@ -6,15 +6,11 @@
 }
 
 button {
+    color: whitesmoke;
     background-color: skyblue;
     border-radius: 5px;
     padding: 20px 30px;
     font-size: 18px;
     border-color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-button a{
-    color: whitesmoke;
-    text-decoration: none;
 }
