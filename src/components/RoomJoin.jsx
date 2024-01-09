@@ -31,7 +31,7 @@ const ARoom = ({ rname, num, members, joined, setJoined }) => {
   //参加者の人数を監視して、5人になったらページをredirect
   //パスをrnameにして遷移先のページで取得し、部屋を識別する
   const redirectToChat = async() => {
-    if (num == 4) {
+    if (num == 2) {
       const { isExistingRoom } = await JSON.parse(localStorage.getItem('user'));
       console.log(isExistingRoom)
 
@@ -110,9 +110,8 @@ const ARoom = ({ rname, num, members, joined, setJoined }) => {
   );
 };
 
-const RoomJoin = (props) => {
+const RoomJoin = ({joined,setJoined}) => {
   const [Rooms, setRooms] = useState([]); //ルーム一覧
-  const [joined, setJoined] = useState(false); //入室したかどうか
 
   useEffect(() => {
 

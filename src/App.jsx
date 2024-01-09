@@ -12,6 +12,7 @@ const App = () => {
   const [page, setPage] = useState(0);
   const [self, setSelf] = useState({});
   const [choice, setChoice] = useState("");
+  const [joined, setJoined] = useState(false);
   return (
     // <div>
     //   {(()=>{
@@ -37,9 +38,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Top />} />
         <Route path="/roommake" element={<RoomMake />} />
-        <Route path="/roomjoin" element={<RoomJoin />} />
+        <Route path="/roomjoin" element={<RoomJoin joined={joined} setJoined={setJoined}/>} />
         <Route path="/chat/:id" element={<Chat />} />
-        <Route path="/quiz/:id" element={<Quiz />} />
+        <Route path="/quiz/:id" element={<Quiz setJoined={setJoined}/>} />
       </Routes>
     </BrowserRouter>
   );
