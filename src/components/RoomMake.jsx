@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { arrayUnion, doc, setDoc } from "firebase/firestore";
 import { db } from "../../api/firebase";
 import { useNavigate } from "react-router-dom"
+import "./styles/RoomMake.css"
 
 const RoomMake = (props) => {
   const [pseudo, setPseudo] = useState(""); //偽名
@@ -39,9 +40,11 @@ const RoomMake = (props) => {
           sendData(e);
           setOpen(true);
         }}
+        className="name-class"
       >
-        <span>偽名:</span>
-        <input
+        <div className="gimei">
+          <p>偽名:</p>
+          <input
           type="text"
           value={pseudo}
           required
@@ -49,43 +52,45 @@ const RoomMake = (props) => {
             setPseudo(e.target.value);
           }}
           disabled={open}
+          placeholder="偽名入力"
+          className="textbox"
         />
-        <span>本名:</span>
-        <input
-          type="text"
-          value={real}
-          onChange={(e) => {
-            setReal(e.target.value);
-          }}
-          required
-          disabled={open}
-        />
-        <br />
-        <br />
-        <span>部屋名:</span>
-        <input
-          type="text"
-          id="roomName"
-          disabled={open}
-          value={rname}
-          required
-          onChange={(e) => {
-            setRname(e.target.value);
-          }}
-        />
-        <button disabled={open}>部屋を作る</button>
-        {/**部屋の作成 */}
+        </div>
+        <div className="honmyou">
+          <p>本名:</p>
+          <input
+            type="text"
+            value={real}
+            onChange={(e) => {
+              setReal(e.target.value);
+            }}
+            required
+            disabled={open}
+            placeholder="本名入力"
+            className="textbox"
+          />
+        </div>
+        <div className="room-class">
+          <div className="room">
+            <p>部屋名:</p>
+            <input
+              type="text"
+              id="roomName"
+              disabled={open}
+              value={rname}
+              required
+              onChange={(e) => {
+              setRname(e.target.value);
+            }}
+              placeholder="部屋名入力"
+              className="textbox"
+            />
+          </div>
+          <div className="button-class2">
+            <button disabled={open} className="create-room">部屋を作る</button>
+          </div>
+        </div>
       </form>
-      <button
-        disabled={!open}
-        onClick={() => {
-          setOpen(false);
-
-          //部屋を閉じる処理
-        }}
-      >
-        部屋を閉じる
-      </button>
       {/* <button onClick={()=>{}}>入室状況の更新</button> */}
     </div>
   );

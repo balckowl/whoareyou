@@ -1,0 +1,61 @@
+/* 2 input-name*/
+
+.name-class{
+    color: skyblue;
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 10%;
+    line-height: 15px;
+    text-indent: 1em;
+}
+
+.gimei{
+    display: flex;
+    justify-content: center;
+}
+
+
+.honmyou{
+    display: flex;
+    justify-content: center;
+}
+
+.room-class{
+    gap: 100px;
+    color: skyblue;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 15px;
+}
+
+.room{
+    display: flex;
+    justify-content: center;
+}
+
+.create-room {
+    background-color: skyblue;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 15px;
+    color: whitesmoke;
+    border-color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.button-class2{
+    padding-top: 3%;
+}
+
+.textbox {
+    width: 200px;
+    height: 35px !important;
+    padding: 3px 7px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+}
+
+.textbox:focus {
+    outline: 0;
+    border: 2px solid skyblue;
+}

@@ -1,0 +1,20 @@
+.button-class {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 15%;
+}
+
+button {
+    background-color: skyblue;
+    border-radius: 5px;
+    padding: 20px 30px;
+    font-size: 18px;
+    border-color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button a{
+    color: whitesmoke;
+    text-decoration: none;
+}
