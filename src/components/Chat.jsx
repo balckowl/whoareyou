@@ -42,6 +42,8 @@ const Chat = (props) => {
 
   const addMessage = async (e) => {
     e.preventDefault()
+    
+    setText("");
 
     await addDoc(collection(db, rname), {
       diplayName: pseudo,
