@@ -12,6 +12,9 @@ const ARoom = ({ rname, num, members, joined, setJoined }) => {
 
   //参加者を追加する
   const addPerson = async (rname, e) => {
+    //loginlessなゲームを実装するためにlocalstorageにuserを保存
+    localStorage.setItem("user", JSON.stringify({ pseudo: pseudo, real: real, isExistingRoom: rname }))
+
     e.preventDefault()
 
     console.log(pseudo, real)
@@ -22,8 +25,6 @@ const ARoom = ({ rname, num, members, joined, setJoined }) => {
       name: arrayUnion({ pseudo: pseudo, real: real })
     });
 
-    //loginlessなゲームを実装するためにlocalstorageにuserを保存
-    localStorage.setItem("user", JSON.stringify({ pseudo: pseudo, real: real, isExistingRoom: rname }))
 
     setJoined(true)
   }
@@ -32,13 +33,24 @@ const ARoom = ({ rname, num, members, joined, setJoined }) => {
   //パスをrnameにして遷移先のページで取得し、部屋を識別する
   const redirectToChat = async() => {
     if (num == 2) {
-      const { isExistingRoom } = await JSON.parse(localStorage.getItem('user'));
-      console.log(isExistingRoom)
-
-      if (isExistingRoom == rname) {
-        navigate(`/chat/${rname}`)
-      } else {
-        return
+      try{
+        const { isExistingRoom } = await JSON.parse(localStorage.getItem('user'));
+        console.log(isExistingRoom)
+        if (isExistingRoom == rname) {
+          navigate(`/chat/${rname}`)
+        } else {
+          return
+        }
+      }
+      catch{
+        console.log("ローカルストレージに値が反映されていない")
+        // console.log(localStorage.getItem("user"))
+        // setTimeout(() => {
+        //   console.log(localStorage.getItem("user"))
+        //   if(localStorage.getItem("user") != null){
+        //     redirectToChat()
+        //   }
+        // }, 1000);
       }
     }
   }
