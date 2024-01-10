@@ -3,11 +3,12 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom"
 import { db } from "../../api/firebase";
 import { useNavigate } from "react-router-dom"
+import "./styles/Chat.css"
 
 const Chat = (props) => {
   const theme = "";
 
-  const [time, setTime] = useState(60); //制限時間
+  const [time, setTime] = useState(10); //制限時間
   const [messages, setMessages] = useState([]); //message一つ一つは{text:"~~~",pseudo:"~~~"}
   const [text, setText] = useState(""); //textareaの値、取得用
   const location = useLocation();
@@ -41,6 +42,8 @@ const Chat = (props) => {
 
   const addMessage = async (e) => {
     e.preventDefault()
+    
+    setText("");
 
     await addDoc(collection(db, rname), {
       diplayName: pseudo,
@@ -50,31 +53,35 @@ const Chat = (props) => {
   }
 
   return (
-    <div>
+    <div id="chat-screen">
       <h1>{rname}</h1>
       <h1>{theme}</h1>
       <p>
         残り時間:{Math.floor(time / 60)}分{time % 60}秒
       </p>
-      <ul id="messages">
+      <div id="messages-container">
         {messages.map((message, index) => {
           //メッセージを展開
+          const isMe = JSON.parse(localStorage.user).pseudo == message.diplayName
           return (
-            <li key={index}>
-              {message.diplayName}:{message.text}
-            </li>
+            <div className={isMe ? "user-message-outer" : "bot-message-outer"} key={index}>
+              <div className={"message " + (isMe ? "user-message" : "bot-message")}>
+                {message.diplayName}:{message.text}
+              </div>
+            </div>
           );
         })}
-      </ul>
-      <form onSubmit={addMessage}>
+      </div>
+      <form onSubmit={addMessage} id="chat-input-container">
         <input
           type="text"
           value={text}
           onChange={(event) => {
             setText(event.target.value);
           }}
+          placeholder="Type your message..."
         />
-        <button>SUBMIT</button>
+        <button>Send</button>
       </form>
       {/*クリックしたらサーバーにメッセージを送る
          自身のIDや名前、アイコンなどはprops.selfに入ってます(ID:props.self.id,偽名:props.self.id,アイコン:props.self.image)。
