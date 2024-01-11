@@ -90,6 +90,7 @@ const ARoom = ({ rname, num, members, joined, setJoined }) => {
         <div className="join-input gimei">
           <span>偽名:</span>
           <input
+            required
             type="text"
             value={pseudo}
             onChange={(e) => {
@@ -102,6 +103,7 @@ const ARoom = ({ rname, num, members, joined, setJoined }) => {
         <div className="join-input honmyou">
           <span>本名:</span>
           <input
+            required
             type="text"
             value={real}
             onChange={(e) => {
