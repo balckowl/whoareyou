@@ -98,7 +98,7 @@ const ARoom = ({ rname, num, members, joined, setJoined }) => {
             className="textbox"
             placeholder="偽名入力"
           />
-        </div>
+        </div><br />
         <div className="join-input honmyou">
           <span>本名:</span>
           <input
@@ -110,7 +110,7 @@ const ARoom = ({ rname, num, members, joined, setJoined }) => {
             className="textbox"
             placeholder="本名入力"
           />
-        </div>
+        </div><br />
         <motion.button
           whileHover={{ scale: 1.1 }}
           className="join-input create-room join-room"
