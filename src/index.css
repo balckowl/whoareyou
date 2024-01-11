@@ -32,8 +32,9 @@ main {
 
 .index {
     text-align: center;
-    /* height: 400px; */
+    height: 400px;
     margin-block: 50px;
+    overflow-y: scroll;
 }
 
 /* footer */

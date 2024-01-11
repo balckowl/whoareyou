@@ -2,4 +2,15 @@
     background-color: skyblue;
     padding: 10px 20px;
     border-radius: 10px;
+    width: max-content;
+}
+
+.choice-list{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
