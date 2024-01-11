@@ -41,6 +41,8 @@ const Quiz = ({setJoined}) => {
   const handleJudge = (e) => {
     localStorage.setItem("maker",0); //ルーム作成者用のフラグを元に戻す
     setJoined(false); //ルーム参加中かどうかのフラグを元に戻す
+    localStorage.removeItem('user');
+    localStorage.removeItem('maker');//localstorageをクリアにする
 
     if(e.target.textContent == who.real){
 

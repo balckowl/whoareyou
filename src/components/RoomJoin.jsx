@@ -2,6 +2,7 @@ import { arrayUnion, collection, doc, onSnapshot, query, updateDoc } from "fireb
 import { useEffect, useState } from "react";
 import { db } from "../../api/firebase";
 import { useNavigate } from "react-router-dom"
+import { motion } from "framer-motion"
 import "./styles/RoomJoin.css"
 
 const ARoom = ({ rname, num, members, joined, setJoined }) => {
@@ -31,9 +32,9 @@ const ARoom = ({ rname, num, members, joined, setJoined }) => {
 
   //参加者の人数を監視して、5人になったらページをredirect
   //パスをrnameにして遷移先のページで取得し、部屋を識別する
-  const redirectToChat = async() => {
+  const redirectToChat = async () => {
     if (num == 2) {
-      try{
+      try {
         const { isExistingRoom } = await JSON.parse(localStorage.getItem('user'));
         console.log(isExistingRoom)
         if (isExistingRoom == rname) {
@@ -42,7 +43,7 @@ const ARoom = ({ rname, num, members, joined, setJoined }) => {
           return
         }
       }
-      catch{
+      catch {
         console.log("ローカルストレージに値が反映されていない")
         // console.log(localStorage.getItem("user"))
         // setTimeout(() => {
@@ -89,40 +90,41 @@ const ARoom = ({ rname, num, members, joined, setJoined }) => {
         <div className="join-input gimei">
           <span>偽名:</span>
           <input
-          type="text"
-          value={pseudo}
-          onChange={(e) => {
-            setPseudo(e.target.value);
-          }}
-          className="textbox"
-          placeholder="偽名入力"
-        />
+            type="text"
+            value={pseudo}
+            onChange={(e) => {
+              setPseudo(e.target.value);
+            }}
+            className="textbox"
+            placeholder="偽名入力"
+          />
         </div>
         <div className="join-input honmyou">
           <span>本名:</span>
           <input
-          type="text"
-          value={real}
-          onChange={(e) => {
-            setReal(e.target.value);
-          }}
-          className="textbox"
-          placeholder="本名入力"
-        />
+            type="text"
+            value={real}
+            onChange={(e) => {
+              setReal(e.target.value);
+            }}
+            className="textbox"
+            placeholder="本名入力"
+          />
         </div>
-        <button
-        className="join-input create-room join-room"
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          className="join-input create-room join-room"
           disabled={joined || Boolean(Number(localStorage.getItem("maker")))}
         >
           入室
-        </button>{" "}
+        </motion.button>{" "}
         {/**入出後か、ルーム作成者ならdisabled */}
       </form>
     </div>
   );
 };
 
-const RoomJoin = ({joined,setJoined}) => {
+const RoomJoin = ({ joined, setJoined }) => {
   const [Rooms, setRooms] = useState([]); //ルーム一覧
 
   useEffect(() => {
@@ -148,12 +150,11 @@ const RoomJoin = ({joined,setJoined}) => {
       {Rooms != null ?
         <>
           {Rooms.map((room, index) => {
-            // return <ARoom ToChat={props.ToChat} pseudo={pseudo} real={real} key={index} {...room} />;
             return (
               <div key={index}>
                 {/* {room.name.length < 2 && */}
-                  <ARoom joined={joined} setJoined={setJoined} rname={room.id} num={room.name.length} members={room.name} index={index} />
-                 {/* } */}
+                <ARoom joined={joined} setJoined={setJoined} rname={room.id} num={room.name.length} members={room.name} index={index} />
+                {/* } */}
               </div>
             )
           })}
