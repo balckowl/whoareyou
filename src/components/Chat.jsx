@@ -8,7 +8,7 @@ import "./styles/Chat.css"
 const Chat = (props) => {
   const theme = "";
 
-  const [time, setTime] = useState(10); //制限時間
+  const [time, setTime] = useState(90); //制限時間
   const [messages, setMessages] = useState([]); //message一つ一つは{text:"~~~",pseudo:"~~~"}
   const [text, setText] = useState(""); //textareaの値、取得用
   const location = useLocation();

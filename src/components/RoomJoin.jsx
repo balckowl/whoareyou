@@ -33,7 +33,7 @@ const ARoom = ({ rname, num, members, joined, setJoined }) => {
   //参加者の人数を監視して、5人になったらページをredirect
   //パスをrnameにして遷移先のページで取得し、部屋を識別する
   const redirectToChat = async () => {
-    if (num == 2) {
+    if (num == 3) {
       try {
         const { isExistingRoom } = await JSON.parse(localStorage.getItem('user'));
         console.log(isExistingRoom)
