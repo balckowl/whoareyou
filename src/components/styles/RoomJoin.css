@@ -43,8 +43,18 @@ div.join-box{
 
 .join-input{
     display: inline-block;
+    text-align: center;
+}
+
+.join-input.gimei{
+    margin-block-end: 10px!important;
 }
 
 .join-name-class{
     padding: 0!important;
+    text-indent: 0!important;
+}
+
+@media screen and(max-width: 480px){
+    
 }

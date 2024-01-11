@@ -74,6 +74,7 @@ const Chat = (props) => {
       </div>
       <form onSubmit={addMessage} id="chat-input-container">
         <input
+          required
           type="text"
           value={text}
           onChange={(event) => {
