@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { db } from "../../api/firebase";
 import { useParams } from "react-router-dom"
 import Answer from "./Answer.jsx";
+import './styles/Quiz.css'
 
 const Quiz = ({setJoined}) => {
 
@@ -69,7 +70,7 @@ const Quiz = ({setJoined}) => {
             <p>{who.pseudo}</p>
 
             <h2>選択肢</h2>
-            <ul>
+            <ul className="choice-list">
               {members.map((member, index) => (
                 <li onClick={handleJudge} key={index}>{member.real}</li>
               ))}
