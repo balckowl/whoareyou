@@ -13,7 +13,7 @@ const Chat = (props) => {
   const [text, setText] = useState(""); //textareaの値、取得用
   const location = useLocation();
   const pathSegments = location.pathname.split('/');
-  const rname = pathSegments[pathSegments.length - 1]; //部屋の名前をパスの最後から取得
+  const rname = decodeURIComponent(pathSegments[pathSegments.length - 1]); //部屋の名前をパスの最後から取得
   const { pseudo, real } = JSON.parse(localStorage.getItem('user')); //ユーザー情報を取得
   const navigate = useNavigate();
 
